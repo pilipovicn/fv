@@ -1,0 +1,61 @@
+module top (
+	    input logic  clk,
+	    input logic  rst,
+	    input logic  A,
+	    input logic  B,
+	    input logic  C,
+	    input logic  D,
+	    input logic  E,
+	    input logic  F,
+	    input logic  G,
+	    input logic  H,
+	    output logic out);
+
+   figure1_3 uufv
+     (
+      .clk(clk),
+      .rst(rst),
+      .A(A),
+      .B(B),
+      .C(C),
+      .D(D),
+      .E(E),
+      .F(F),
+      .G(G),
+      .H(H),
+      .out(out));
+
+   property p1:
+     @(posedge clk) ~A ##0 ~B ##0 ~C ##0 ~E ##0 ~F |=> out;
+   endproperty; // p1
+
+   property p2:
+     @(posedge clk) A ##0 ~B ##0 ~C ##0 E ##0 ~F |=> out;
+   endproperty; // p2
+   
+   property p3:
+     @(posedge clk) ~A ##0 B ##0 ~C ##0 ~E ##0 F |=> out;
+   endproperty; // p3
+   
+   property p4:
+     @(posedge clk) A ##0 B ##0 ~C ##0 E ##0 F |=> out;
+   endproperty; // p4
+   
+   property p5:
+     @(posedge clk) ~A ##0 ~B ##0 C ##0 ~G ##0 ~H |=> out;
+   endproperty; // p5
+   
+   property p6:
+     @(posedge clk) A ##0 ~B ##0 C ##0 G ##0 ~H |=> out;
+   endproperty; // p6
+   
+   property p7:
+     @(posedge clk) ~A ##0 B ##0 C ##0 ~G ##0 H |=> out;
+   endproperty; // p7
+   
+   property p8:
+     @(posedge clk) A ##0 B ##0 C ##0 G ##0 H |=> out;
+   endproperty; // p8
+   
+endmodule; // top
+      
